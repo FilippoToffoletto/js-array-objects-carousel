@@ -58,14 +58,11 @@ let counter = 0;
 let timing;
 let timeChange = 5;
 
-
-
 // creo i due arrey contenenti la mia collezione di immagini
 const arrayImgTop = document.getElementsByClassName('img-slider-top');
 const arrayImgBottom = document.getElementsByClassName('img-slider-bottom');
 let isLeft;
 let isShuffle;
-
 
 timingCarousel();
 
@@ -86,8 +83,6 @@ buttonStop.addEventListener('click', function(){
   clearInterval(timing);
   buttonShuffle.innerHTML = 'START';
 })
-
-
 
 
 //FUNZIONI
@@ -137,6 +132,7 @@ function sliderNextPrev(flag,array1, array2){
   array2[counter].classList.add('active')
 }
 
+// timing function
 function timingCarousel(flag){
  timing = setInterval(function(){
     sliderNextPrev(flag, arrayImgTop, arrayImgBottom)
