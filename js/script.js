@@ -41,6 +41,8 @@ const containerImgLg = document.querySelector('.container-slider-top');
 const containerImgXs = document.querySelector('.container-slider-bottom');
 const buttonRight = document.querySelector('.btn.right');
 const buttonLeft = document.querySelector('.btn.left');
+const buttonShuffle = document.querySelector('.shuffle');
+const buttonStop = document.querySelector('.stop');
 
 // creo l'html dinamicamente
 postiDaVisitare.forEach(luogo => {
@@ -51,10 +53,10 @@ postiDaVisitare.forEach(luogo => {
 // creo la situazione di default
 
 document.querySelector('.img-slider-top').classList.remove('d-none');
-document.querySelector('.img-slider-bottom img').classList.add('active');
+document.querySelector('.img-slider-bottom').classList.add('active');
 let counter = 0;
-
-
+let timing;
+let timeChange = 5;
 
 
 
@@ -62,7 +64,10 @@ let counter = 0;
 const arrayImgTop = document.getElementsByClassName('img-slider-top');
 const arrayImgBottom = document.getElementsByClassName('img-slider-bottom');
 let isLeft;
+let isShuffle;
 
+
+timingCarousel();
 
 buttonLeft.addEventListener('click', function(){
   isLeft = true;
@@ -72,20 +77,15 @@ buttonRight.addEventListener('click', function(){
   isLeft = false;
   sliderNextPrev(isLeft,arrayImgTop,arrayImgBottom );
 })
-
-// do un intervallo per il cambio immagini e una variabile globale
-let changeTime = 1.7 ;
-let startInterval;
-
-// loop che cambia le immagini
-startInterval = setInterval(function(){
-}, changeTime * 1000)
-
-
-
-
-
-
+buttonShuffle.addEventListener('click', function(){
+  let isShuffle = true;
+  shuffle(isShuffle);
+  buttonShuffle.innerHTML = 'INVERTI';
+});
+buttonStop.addEventListener('click', function(){
+  clearInterval(timing);
+  buttonShuffle.innerHTML = 'START';
+})
 
 
 
@@ -135,4 +135,20 @@ function sliderNextPrev(flag,array1, array2){
   
   array1[counter].classList.remove('d-none');
   array2[counter].classList.add('active')
+}
+
+function timingCarousel(flag){
+ timing = setInterval(function(){
+    sliderNextPrev(flag, arrayImgTop, arrayImgBottom)
+  }, timeChange * 1000);
+}
+
+function shuffle(flag){
+  let isChange;
+  if(flag) isChange = true;
+  else{
+    isChange = false;
+  }
+  clearInterval(timing)
+  timingCarousel(isChange);
 }

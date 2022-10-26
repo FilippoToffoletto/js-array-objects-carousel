@@ -89,7 +89,7 @@ img{
 .button .btn {
     font-size: 2rem;
     position: absolute;
-    top: 50%;
+    top: 91%;
     transform: translateY(-50%);
     opacity: .8;
     color: #ff70a6;
@@ -106,4 +106,22 @@ img{
   
 .img-slider-bottom.active {
     filter: brightness(1);
+}
+
+.scegli-verso button {
+    background-color: black;
+    color: white;
+   padding: 10px 0;
+    width: 100px;
+    margin-top: 50px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+.bottom-container {
+    width: 80%;
+    max-width: 1200px;
+    margin: -130px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
